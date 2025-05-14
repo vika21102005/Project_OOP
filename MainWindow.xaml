@@ -1,0 +1,45 @@
+﻿<Window x:Class="Glovo.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Glovo"
+        mc:Ignorable="d"
+        Title="Glovo - Головна" Height="450" Width="800" Background="#F4F4F4">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="200"/>
+            <ColumnDefinition Width="*"/>
+        </Grid.ColumnDefinitions>
+
+        <!-- Боковое меню -->
+        <StackPanel Grid.Column="0" Background="#2C3E50" Width="200" Height="Auto">
+            <TextBlock Text="Меню" FontSize="20" Foreground="White" HorizontalAlignment="Center" Margin="10"/>
+            <Button x:Name="OrdersButton" Content="Замовлення" Margin="10" Height="40" Background="#34495E" Foreground="White" Click="Orders_Click"/>
+            <Button x:Name="SettingsButton" Content="Налаштування" Margin="10" Height="40" Background="#34495E" Foreground="White" Click="Settings_Click"/>
+            <Button x:Name="HomeButton" Content="Зберегти у файл" Margin="10" Height="40" Background="#34495E" Foreground="White" Click="Home_Click"/>
+            <Button x:Name="ExitButton" Content="Вихід" Margin="10" Height="40" Background="#E74C3C" Foreground="White" Click="Exit_Click"/>
+        </StackPanel>
+
+        <!-- Основная область -->
+        <Grid Grid.Column="1">
+            <StackPanel>
+                <TextBlock Text="Список замовлень" FontSize="24" FontWeight="Bold" Margin="0 0 0 10"/>
+                <ListView Name="OrdersListView" Height="300" ItemsSource="{Binding Orders}">
+                    <ListView.View>
+                        <GridView>
+                            <GridViewColumn Header="Номер" Width="100" DisplayMemberBinding="{Binding OrderId}"/>
+                            <GridViewColumn Header="Клієнт" Width="200" DisplayMemberBinding="{Binding ClientName}"/>
+                            <GridViewColumn Header="Статус" Width="150" DisplayMemberBinding="{Binding Status}"/>
+                        </GridView>
+                    </ListView.View>
+                </ListView>
+                <StackPanel Orientation="Horizontal" HorizontalAlignment="Right" Margin="0 10 0 0">
+                    <Button Name="AddOrderButton" Content="Додати замовлення" Click="AddOrder_Click" />
+                    <Button Name="EditOrderButton" Content="Редагувати замовлення" Click="EditOrder_Click" />
+                    <Button Name="DeleteOrderButton" Content="Видалити замовлення" Click="DeleteOrder_Click" />
+                </StackPanel>
+            </StackPanel>
+        </Grid>
+    </Grid>
+</Window>
